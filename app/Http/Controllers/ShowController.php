@@ -24,7 +24,8 @@ class ShowController extends Controller
      */
     public function create()
     {
-        return view('show.createShow');
+        $cn = \DB::table('channels')->select('channelId','channelName')->get();
+        return view('show.createShow', compact('cn'));
     }
 
     /**
@@ -36,15 +37,15 @@ class ShowController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'showId' => 'required',
+            //'showId' => 'required',
             'showName' => 'required',
             'showDesc' => 'required',
             'showTip' => 'required',
             'showClas' => 'required',
             'showChannel' => 'required',
         ]);
-        $newgrid = new Alumn([
-            'showId' => $request->get('showId'),
+        $newgrid = new Show([
+            //'showId' => $request->get('showId'),
             'showName' => $request->get('showName'),
             'showDesc' => $request->get('showDesc'),
             'showTip' => $request->get('showTip'),

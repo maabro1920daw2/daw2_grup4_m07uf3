@@ -35,7 +35,16 @@ class ChannelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            //'channelId' => 'required',
+            'channelName' => 'required',
+        ]);
+        $newgrid = new Channel([
+            //'channelId' => $request->get('channelId'),
+            'channelName' => $request->get('channelName'),
+        ]);
+        $newgrid->save();
+        return redirect()->route('channel.create')->with('Exit', 'New channel created');
     }
 
     /**

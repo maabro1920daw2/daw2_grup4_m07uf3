@@ -8,7 +8,7 @@
           <p>{{\Session::get('Exit')}}</p>
         </div>
       @endif
-      <form action="{{url('grid')}}" method="POST">
+      <form action="{{url('show')}}" method="POST">
       {{csrf_field()}}
         <br>
         <b>Insert the data for the new show:</b><br><br>
@@ -26,7 +26,11 @@
         <input type="text" name="showClas">
         <br><br>
         Channel where it airs:
-        <input type="text" name="showChannel">
+        <select name="showChannel">
+          @foreach($cn as $channel)
+            <option value="{{$channel->channelId}}">{{$channel->channelName}}</option>
+          @endforeach
+        </select>
         <br><br>
         <input value="Send data" type="submit">
       </form>

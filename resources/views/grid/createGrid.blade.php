@@ -14,16 +14,24 @@
         <b>Insert a show in the grid:</b><br><br>
         <br>
         Hour:
-        <input type="text" name="hour">
+        <input type="text" name="gridHour">
         <br><br>
         Day:
-        <input type="text" name="Day">
+        <input type="text" name="gridDay">
         <br><br>
         Channel:
-        <input type="text" name="gridChannel">
+        <select name="gridChannel">
+          @foreach($cn as $channel)
+            <option value="{{$channel->channelId}}">{{$channel->channelName}}</option>
+          @endforeach
+        </select>
         <br><br>
         Show:
-        <input type="text" name="gridShow">
+        <select name="gridShow">
+          @foreach($sh as $show)
+            <option value="{{$show->showId}}">{{$show->showName}}</option>
+          @endforeach
+        </select>
         <br><br>
         <input value="Send data" type="submit">
       </form>
