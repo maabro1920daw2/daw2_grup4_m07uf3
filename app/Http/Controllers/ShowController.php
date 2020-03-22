@@ -14,7 +14,8 @@ class ShowController extends Controller
      */
     public function index()
     {
-        //
+        $shows = Show::all()->toArray();
+        return view('show.index', compact('shows'));
     }
 
     /**
@@ -37,7 +38,6 @@ class ShowController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            //'showId' => 'required',
             'showName' => 'required',
             'showDesc' => 'required',
             'showTip' => 'required',
@@ -45,7 +45,6 @@ class ShowController extends Controller
             'showChannel' => 'required',
         ]);
         $newgrid = new Show([
-            //'showId' => $request->get('showId'),
             'showName' => $request->get('showName'),
             'showDesc' => $request->get('showDesc'),
             'showTip' => $request->get('showTip'),
