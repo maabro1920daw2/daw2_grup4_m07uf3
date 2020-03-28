@@ -12,20 +12,21 @@
     </ul>
   </div>
 @endif
-  <h3>Insert the data for the new show:</h3>
-  <form action="{{url('show')}}" method="POST">
+  <h3>Edit data for {{$show->showName}}:</h3>
+  <form action="{{action('ShowController@update', $id)}}" method="POST">
   {{csrf_field()}}
+  @method('PUT')
     <div class="form-group">
       <label for="inputShowName">Show Name:</label>
-      <input type="text" class="form-control" name="showName">
+      <input type="text" class="form-control" name="showName" value="{{$show->showName}}" placeholder="Enter the new show name">
     </div>
     <div class="form-group">
       <label for="inputShowDescription">Show Description:</label>
-      <input type="text" class="form-control" name="showDesc">
+      <input type="text" class="form-control" name="showDesc" value="{{$show->showDesc}}" placeholder="Enter the new show description">
     </div>
     <div class="form-group">      
       <label for="inputShowType">Show type:</label>
-      <select name="showTip" class="form-control">
+      <select name="showTip" class="form-control" value="{{$show->showTip}}">
         <option value="news">News</option>
         <option value="sports">Sports</option>
         <option value="sticom">Sitcom</option>
@@ -38,7 +39,7 @@
     </div>
     <div class="form-group">
       <label for="inputShowClassification">Show Classification:</label>
-      <select name="showClas" class="form-control">
+      <select name="showClas" class="form-control" value="{{$show->showClass}}">
         <option value="childhood">Childhood</option>
         <option value="ap">All publics</option>
         <option value="+7">+7</option>
@@ -51,13 +52,13 @@
     </div>
     <div class="form-group">
       <label for="inputShowChannel">Channel where it airs:</label>
-      <select name="showChannel" class="form-control">
+      <select name="showChannel" class="form-control" value="{{$show->showChannel}}">
         @foreach($cn as $channel)
           <option value="{{$channel->id}}">{{$channel->channelName}}</option>
         @endforeach
       </select>
     </div>
-    <button type="submit" class="btn btn-primary">Create show</button>
+    <button type="submit" class="btn btn-primary">Edit show</button>
   </form>
 </div>
 @endsection

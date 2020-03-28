@@ -14,7 +14,7 @@ class CreateShowsTable extends Migration
     public function up()
     {
         Schema::create('shows', function (Blueprint $table) {
-            $table->id('showId');
+            $table->id();
             $table->string('showName');
             $table->string('showDesc');
             $table->string('showTip');
@@ -22,7 +22,7 @@ class CreateShowsTable extends Migration
             $table->timestamps();
 
             $table->foreignId('showChannel');
-            $table->foreign('showChannel')->references('channelId')->on('channels')->onDelete('cascade');
+            $table->foreign('showChannel')->references('id')->on('channels')->onDelete('cascade');
         });
     }
 

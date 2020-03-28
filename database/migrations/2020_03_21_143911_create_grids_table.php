@@ -14,7 +14,7 @@ class CreateGridsTable extends Migration
     public function up()
     {
         Schema::create('grids', function (Blueprint $table) {
-            $table->id('gridId');
+            $table->id();
             $table->time('gridHour');
             $table->date('gridDay');
             $table->timestamps();

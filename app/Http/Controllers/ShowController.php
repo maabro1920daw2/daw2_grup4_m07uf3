@@ -25,7 +25,7 @@ class ShowController extends Controller
      */
     public function create()
     {
-        $cn = \DB::table('channels')->select('channelId','channelName')->get();
+        $cn = \DB::table('channels')->select('id','channelName')->get();
         return view('show.createShow', compact('cn'));
     }
 
@@ -42,7 +42,7 @@ class ShowController extends Controller
             'showDesc' => 'required',
             'showTip' => 'required',
             'showClas' => 'required',
-            'showChannel' => 'required',
+            'showChannel' => 'required'
         ]);
         $newgrid = new Show([
             'showName' => $request->get('showName'),
@@ -52,7 +52,7 @@ class ShowController extends Controller
             'showChannel' => $request->get('showChannel'),
         ]);
         $newgrid->save();
-        return redirect()->route('show.create')->with('Exit', 'New show created');
+        return redirect()->route('show.index')->with('Exit', 'New show created');
     }
 
     /**
@@ -63,7 +63,7 @@ class ShowController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -74,7 +74,9 @@ class ShowController extends Controller
      */
     public function edit($id)
     {
-        //
+        $show = Show::find($id);
+        $cn = \DB::table('channels')->select('id','channelName')->get();
+        return view('show.edit', compact('show', 'id', 'cn'));
     }
 
     /**
@@ -86,7 +88,21 @@ class ShowController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'showName' => 'required',
+            'showDesc' => 'required',
+            'showTip' => 'required',
+            'showClas' => 'required',
+            'showChannel' => 'required'
+        ]);
+        $show = Show::find($id);
+        $show->showName = $request->get('showName');
+        $show->showDesc = $request->get('showDesc');
+        $show->showTip = $request->get('showTip');
+        $show->showClas = $request->get('showClas');
+        $show->showChannel = $request->get('showChannel');
+        $show->save();
+        return redirect()->route('show.index')->with('Exit', 'Data show updated');
     }
 
     /**
@@ -97,6 +113,8 @@ class ShowController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $show = Show::find($id);
+        $show->delete();
+        return redirect()->route('show.index')->with('Exit', 'Show deleted');
     }
 }

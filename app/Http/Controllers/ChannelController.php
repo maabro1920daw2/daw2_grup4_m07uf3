@@ -37,15 +37,13 @@ class ChannelController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            //'channelId' => 'required',
-            'channelName' => 'required',
+            'channelName' => 'required'
         ]);
         $newgrid = new Channel([
-            //'channelId' => $request->get('channelId'),
             'channelName' => $request->get('channelName'),
         ]);
         $newgrid->save();
-        return redirect()->route('channel.create')->with('Exit', 'New channel created');
+        return redirect()->route('channel.index')->with('Exit', 'New channel created');
     }
 
     /**
@@ -67,7 +65,8 @@ class ChannelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $channel = Channel::find($id);
+        return view('channel.edit', compact('channel', 'id'));
     }
 
     /**
@@ -79,7 +78,13 @@ class ChannelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'channelName' => 'required'
+        ]);
+        $channel = Channel::find($id);
+        $channel->channelName = $request->get('channelName');
+        $channel->save();
+        return redirect()->route('channel.index')->with('Exit', 'Data channel updated');
     }
 
     /**
@@ -90,6 +95,8 @@ class ChannelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $channel = Channel::find($id);
+        $channel->delete();
+        return redirect()->route('channel.index')->with('Exit', 'Channel deleted');
     }
 }

@@ -17,8 +17,8 @@ class CreateGridShowTable extends Migration
             $table->id();
             $table->foreignId('showId');
             $table->foreignId('gridId');
-            $table->foreign('showId')->references('showId')->on('shows')->onDelete('cascade');
-            $table->foreign('gridId')->references('gridId')->on('grids')->onDelete('cascade');
+            $table->foreign('showId')->references('id')->on('shows')->onDelete('cascade');
+            $table->foreign('gridId')->references('id')->on('grids')->onDelete('cascade');
         });
     }
 

@@ -21,5 +21,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('channel','ChannelController');
+/*Route::get('/channel','ChannelController@index');
+Route::post('/channel/create','ChannelController@store');
+Route::get('/channel/{id}/edit','ChannelController@edit');
+Route::post('/channel/edit','ChannelController@update');*/
 Route::resource('show','ShowController');
 Route::resource('grid','GridController');
