@@ -20,6 +20,7 @@
       <input type="text" class="form-control" name="channelName">
     </div>
     <button type="submit" class="btn btn-primary">Create channel</button>
+    <button type="reset" class="btn btn-primary">Reset channel</button>
   </form>
 </div>
 @endsection

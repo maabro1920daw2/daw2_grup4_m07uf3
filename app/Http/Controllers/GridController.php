@@ -14,7 +14,7 @@ class GridController extends Controller
      */
     public function index()
     {
-        //
+        return view('grid.index');
     }
 
     /**
@@ -24,8 +24,8 @@ class GridController extends Controller
      */
     public function create()
     {
-        $sh = \DB::table('shows')->select('showId','showName','showChannel')->get();
-        $cn = \DB::table('channels')->select('channelId','channelName')->get();
+        $sh = \DB::table('shows')->select('id','showName','showChannel')->get();
+        $cn = \DB::table('channels')->select('id','channelName')->get();
         return view('grid.createGrid', compact('sh','cn'));
     }
 
@@ -49,7 +49,11 @@ class GridController extends Controller
             'gridChannel' => $request->get('gridChannel'),
             'gridShow' => $request->get('gridShow'),
         ]);
+
+        
+        
         $newgrid->save();
+        $newgrid->shows()->attach($request->get('gridShow'));
         return redirect()->route('grid.create')->with('Exit', 'New grid created');
     }
 

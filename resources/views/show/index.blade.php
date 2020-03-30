@@ -11,7 +11,7 @@
 	<div class="col-md-12">
 		<h3>Shows Data</h3>
 		<div align="right">
-			<a href="{{route('show.create')}}" class="btn btn-primary">Add</a><br/><br/>
+			<a href="{{route('show.create')}}" class="btn btn-primary">Add Show</a><br/><br/>
 		</div>
 		<table class="table table-bordered table-striped">
 			<tr>

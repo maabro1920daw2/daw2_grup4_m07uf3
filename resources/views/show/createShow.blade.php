@@ -58,6 +58,7 @@
       </select>
     </div>
     <button type="submit" class="btn btn-primary">Create show</button>
+    <button type="reset" class="btn btn-primary">Reset show</button>
   </form>
 </div>
 @endsection

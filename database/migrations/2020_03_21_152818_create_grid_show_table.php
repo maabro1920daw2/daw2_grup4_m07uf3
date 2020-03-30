@@ -15,10 +15,10 @@ class CreateGridShowTable extends Migration
     {
         Schema::create('grid_show', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('showId');
-            $table->foreignId('gridId');
-            $table->foreign('showId')->references('id')->on('shows')->onDelete('cascade');
-            $table->foreign('gridId')->references('id')->on('grids')->onDelete('cascade');
+            $table->foreignId('grid_id');
+            $table->foreignId('show_id');
+            $table->foreign('grid_id')->references('id')->on('grids')->onDelete('cascade');
+            $table->foreign('show_id')->references('id')->on('shows')->onDelete('cascade');
         });
     }
 

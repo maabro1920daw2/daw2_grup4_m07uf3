@@ -24,7 +24,7 @@
       <label for="inputChannelName">Channel:</label>
       <select name="gridChannel" class="form-control">
       @foreach($cn as $channel)
-        <option value="{{$channel->channelId}}">{{$channel->channelName}}</option>
+        <option value="{{$channel->id}}">{{$channel->channelName}}</option>
       @endforeach
       </select>
     </div>
@@ -32,7 +32,7 @@
       <label for="inputShowName">Show:</label>
       <select name="gridShow" class="form-control">
       @foreach($sh as $show)
-        <option value="{{$show->showId}}">{{$show->showName}}</option>
+        <option value="{{$show->id}}">{{$show->showName}}</option>
       @endforeach
       </select>
     </div>
@@ -45,6 +45,7 @@
       <input type="date" class="form-control" name="gridDay">
     </div>
     <button type="submit" class="btn btn-primary">Create grid</button>
+    <button type="reset" class="btn btn-primary">Reset grid</button>
   </form>
 </div>
 @endsection
