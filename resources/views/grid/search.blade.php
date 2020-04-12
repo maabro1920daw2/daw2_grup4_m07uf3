@@ -13,9 +13,7 @@
 		<div align="right">
 			<a href="{{route('grid.create')}}" class="btn btn-primary">Add Grid</a><br/><br/>
 		</div>
-		<form method="POST">
-		{{csrf_field()}}
-		@method('GET')
+		<form method="GET" action="grid/search">
 			<div class="form-group">
 				<label for="inputChannelName">Channel:</label>
 				<select name="gridChannel" class="form-control">
@@ -32,34 +30,38 @@
       			@endforeach
       			</select>
       		</div>
-      		<button name="search" type="submit" class="btn btn-primary">Show grid</button>
+      		<button type="submit" class="btn btn-primary">Show grid</button>
 		</form>
-		@if(isset($_POST['search']))
-		<table class="table table-bordered table-striped">
+		@if(isset($search))
+		<p>{{$channel}}<p>
+		<p>{{$day}}<p>
+		@endif
+		<!-- <table class="table table-bordered table-striped">
 			<tr>
 				<th>Hour</th>
 				<th>Name Channel</th>
 				<th>Program</th>
 			</tr>
 			@foreach($grids as $grid)
-				@if($grid->gridDay == $_POST['gridDay'])
+			<tr>
+				<td>{{$grid->gridHour}}</td>
+				<td>
 					@foreach($grid->shows as $show)
 						@foreach($channels as $channel)
-							@if($channel->id == $_POST['gridChannel'] && $grid->gridDay == $_POST['gridDay'])
-								@if($show->showChannel == $channel->id)
-								<tr>
-									<td>{{$grid->gridHour}}</td>
-									<td>{{$channel->channelName}}</td>
-									<td>{{$show->showName}}</td>
-								</tr>
-								@endif
+							@if($show->showChannel == $channel->id)
+								{{$channel->channelName}}
 							@endif
 						@endforeach
 					@endforeach
-				@endif
+				</td>
+				<td>
+					@foreach($grid->shows as $show)
+						{{$show->showName}}
+					@endforeach
+				</td>
+			</tr>
 			@endforeach
-		</table>
-		@endif
+		</table> -->
 	</div>	
 </div>
 @endsection

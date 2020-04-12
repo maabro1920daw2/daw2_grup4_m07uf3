@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Grid;
+use App\Show;
+use App\Channel;
 
 class GridController extends Controller
 {
@@ -14,9 +16,11 @@ class GridController extends Controller
      */
     public function index()
     {
-        return view('grid.index');
+        $channels = Channel::all();
+        $grids = Grid::all();
+        $shows = Show::all();
+        return view('grid.index', compact('channels','grids','shows'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -49,9 +53,7 @@ class GridController extends Controller
             'gridChannel' => $request->get('gridChannel'),
             'gridShow' => $request->get('gridShow'),
         ]);
-
-        
-        
+       
         $newgrid->save();
         $newgrid->shows()->attach($request->get('gridShow'));
         return redirect()->route('grid.create')->with('Exit', 'New grid created');
