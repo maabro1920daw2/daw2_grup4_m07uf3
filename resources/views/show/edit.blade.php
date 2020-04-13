@@ -12,6 +12,9 @@
     </ul>
   </div>
 @endif
+  <div align="left">
+    <a href="{{route('show.index')}}" class="btn btn-primary">Back to shows</a><br/><br/>
+  </div>
   <h3>Edit data for {{$show->showName}}:</h3>
   <form action="{{action('ShowController@update', $id)}}" method="POST">
   {{csrf_field()}}
@@ -44,7 +47,7 @@
         <option value="ap">All publics</option>
         <option value="+7">+7</option>
         <option value="+10">+10</option>
-        <option value="+12">+13</option>
+        <option value="+12">+12</option>
         <option value="+13">+13</option>
         <option value="+16">+16</option>
         <option value="+18">+18</option>

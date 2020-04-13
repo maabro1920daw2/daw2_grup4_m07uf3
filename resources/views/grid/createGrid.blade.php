@@ -17,6 +17,9 @@
     <p>{{\Session::get('Exit')}}</p>
   </div>
 @endif
+  <div align="left">
+    <a href="{{route('grid.index')}}" class="btn btn-primary">Back to grids</a><br/><br/>
+  </div>
   <h3>Insert a show in the grid:</h3>
   <form action="{{url('grid')}}" method="POST">
   {{csrf_field()}}

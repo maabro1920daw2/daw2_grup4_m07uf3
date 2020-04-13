@@ -20,7 +20,6 @@ class CreateShowsTable extends Migration
             $table->string('showTip');
             $table->string('showClas');
             $table->timestamps();
-
             $table->foreignId('showChannel');
             $table->foreign('showChannel')->references('id')->on('channels')->onDelete('cascade');
         });

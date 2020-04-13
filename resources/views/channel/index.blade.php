@@ -16,14 +16,16 @@
 		<table class="table table-bordered table-striped">
 			<tr>
 				<th>ID Channel</th>
+				<th>Logo</th>
 				<th>Name Channel</th>
 				<th></th>
 			</tr>
 			@foreach($channels as $channel)
 			<tr>
-				<td>{{$channel['id']}}</td>
-				<td>{{$channel['channelName']}}</td>
-				<td align="center">
+				<td valign="center">{{$channel['id']}}</td>
+				<td><img src="{{ URL::to('/') }}/uploads/{{ $channel['channelLogo'] }}" class="img-thumbnail" width="75" /></td>
+				<td valign="center">{{$channel['channelName']}}</td>
+				<td align="center" valign="center">
 					<span class="sp">
 						<a href="{{action('ChannelController@edit', $channel['id'])}}" class="btn btn-warning"><i class="far fa-edit"></i></a>
 					</span>

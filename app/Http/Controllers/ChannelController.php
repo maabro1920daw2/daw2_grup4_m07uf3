@@ -37,10 +37,18 @@ class ChannelController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'channelName' => 'required'
+            'channelName' => 'required',
+            'channelLogo' =>  'required',
         ]);
+
+        $image = $request->file('channelLogo');
+
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('uploads'), $new_name);
+
         $newgrid = new Channel([
             'channelName' => $request->get('channelName'),
+            'channelLogo' => $new_name,
         ]);
         $newgrid->save();
         return redirect()->route('channel.index')->with('Exit', 'New channel created');
@@ -78,11 +86,28 @@ class ChannelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'channelName' => 'required'
-        ]);
+        $image_name = $request->hidden_image;
+        $image = $request->file('channelLogo');
+        if($image != '')
+        {
+            $request->validate([
+                'channelName'    =>  'required',
+                'channelLogo'    =>  'image'
+            ]);
+
+            $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $image_name);
+        }
+        else
+        {
+            $request->validate([
+                'channelName'    =>  'required',
+            ]);
+        }
+
         $channel = Channel::find($id);
         $channel->channelName = $request->get('channelName');
+        $channel->channelLogo = $image_name;
         $channel->save();
         return redirect()->route('channel.index')->with('Exit', 'Data channel updated');
     }

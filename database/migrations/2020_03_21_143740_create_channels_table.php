@@ -16,6 +16,7 @@ class CreateChannelsTable extends Migration
         Schema::create('channels', function (Blueprint $table) {
             $table->id();
             $table->string('channelName');
+            $table->string('channelLogo');
             $table->timestamps();
         });
     }

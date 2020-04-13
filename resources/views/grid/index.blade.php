@@ -35,7 +35,7 @@
       		<button name="search" type="submit" class="btn btn-primary">Show grid</button>
 		</form>
 		@if(isset($_POST['search']))
-		<table class="table table-bordered table-striped">
+		<table class="tabla table table-bordered table-striped">
 			<tr>
 				<th>Hour</th>
 				<th>Name Channel</th>
